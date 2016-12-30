@@ -1,0 +1,14 @@
+defaults: &defaults
+  line:
+    channel_id: 1494596568
+    channel_secret: a27a8aa1ca3819d57671b56521152d0f
+    channel_token: l3pt8ANoOso4w5Ni5x4FJu1xOzAzcuYz1STA+A4zAadR+di1ydhbatZmDGR1dER3cq/1uUWLRynMjregklWoBzKOJrECyegnVb1ceCIUTgWAUH1zpRkny0qV2tt9sdLofYok/P28pEVwzHDQqlSf+wdB04t89/1O/w1cDnyilFU=
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
