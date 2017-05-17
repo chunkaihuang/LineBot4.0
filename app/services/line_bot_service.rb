@@ -45,7 +45,7 @@ class LineBotService
           puts "回傳訊息: #{@return_mag}"
           puts "token: #{event['replyToken']}"
             
-          msg = @client.reply_message(event['replyToken'], @return_mag)
+          msg = @client.reply_message(event['replyToken'], message)
           puts "line回傳：#{msg}"
         when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
           response = @client.get_message_content(event.message['id'])
