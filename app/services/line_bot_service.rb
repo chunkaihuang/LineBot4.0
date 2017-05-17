@@ -28,10 +28,10 @@ class LineBotService
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: event.message['text']
-          }
+          # message = {
+          #   type: 'text',
+          #   text: event.message['text']
+          # }
           @return_mag = ""
           case event.message['text']
           when "..."
@@ -41,7 +41,11 @@ class LineBotService
           else
             @return_mag = "不要再講了辣..."
           end
-
+          message = {
+            type: 'text',
+            text: @return_mag
+          }
+          
           puts "回傳訊息: #{@return_mag}"
           puts "token: #{event['replyToken']}"
             
