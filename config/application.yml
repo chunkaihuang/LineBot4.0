@@ -1,8 +1,8 @@
 defaults: &defaults
   line:
-    channel_id: 1494596568
-    channel_secret: a27a8aa1ca3819d57671b56521152d0f
-    channel_token: l3pt8ANoOso4w5Ni5x4FJu1xOzAzcuYz1STA+A4zAadR+di1ydhbatZmDGR1dER3cq/1uUWLRynMjregklWoBzKOJrECyegnVb1ceCIUTgWAUH1zpRkny0qV2tt9sdLofYok/P28pEVwzHDQqlSf+wdB04t89/1O/w1cDnyilFU=
+    channel_id: 1515617134
+    channel_secret: d6c8e77cbc44f5c2778cd018e8eaf490
+    channel_token: DU8P3ttHJVN2R9+gKfoq1CJ3z2mWesHAGRF5/ZP4ddU+txg85nbVV+A3qSmBGU4xYlW6z10aoZK3StQ6ow+FWyq6Sw0aqutHfQy4QT3YEdm1gVZbUp+bWIBjXnxIryx9y76sX/oG1HML/Et+OjHFcwdB04t89/1O/w1cDnyilFU=
 
 development:
   <<: *defaults
