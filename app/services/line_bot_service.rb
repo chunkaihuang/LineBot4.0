@@ -1,5 +1,4 @@
 # app.rb
-require 'sinatra'
 require 'line/bot'
 
 class LineBotService
@@ -14,7 +13,7 @@ class LineBotService
   def reply_msg request
     body = request.body.read
 
-    @return_mag = ""
+    @return_mag = "QQ"
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless @client.validate_signature(body, signature)
@@ -46,7 +45,8 @@ class LineBotService
           puts "回傳訊息: #{@return_mag}"
           puts "token: #{event['replyToken']}"
             
-          @client.reply_message(event['replyToken'], @return_mag)
+          msg = @client.reply_message(event['replyToken'], @return_mag)
+          puts "line回傳：#{msg}"
         when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
           response = @client.get_message_content(event.message['id'])
           tf = Tempfile.open("content")
