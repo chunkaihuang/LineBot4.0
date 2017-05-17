@@ -28,24 +28,21 @@ class LineBotService
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          # message = {
-          #   type: 'text',
-          #   text: event.message['text']
-          # }
+
           @return_mag = ""
           case event.message['text']
-          when "..."
-            @return_mag = "你現在是要教訓我嗎= ="
-          when "請問你是" || "職業"
-            @return_mag = "我是一位工程師。"
+          when /蛙人/, /蛙人渣/, /陳蛙興/
+            @return_mag = "比陳進興那些殺人犯還要不如的爛貨！"
+          when /蔡竣宇/, /小護士/
+            @return_mag = "你們可以自己仔細思考看看，他的這種惡劣行為大概比殺人在緩和一點而已！"
           else
-            @return_mag = "不要再講了辣..."
+            ''
           end
           message = {
             type: 'text',
             text: @return_mag
           }
-          
+
           puts "回傳訊息: #{@return_mag}"
           puts "token: #{event['replyToken']}"
             
