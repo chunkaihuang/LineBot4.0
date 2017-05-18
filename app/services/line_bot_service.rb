@@ -13,7 +13,7 @@ class LineBotService
   def reply_msg request
     body = request.body.read
 
-    @return_mag = "QQ"
+    @return_mag = ""
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless @client.validate_signature(body, signature)
