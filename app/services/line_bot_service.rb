@@ -29,7 +29,7 @@ class LineBotService
         case event.type
         when Line::Bot::Event::MessageType::Text
 
-          @return_mag = return_mag(event.message['text'])
+          @return_mag = LineBotService.new.return_mag(event.message['text'])
 
           # puts "回傳訊息: #{@return_mag}"
           # puts "token: #{event['replyToken']}"
