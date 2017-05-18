@@ -14,14 +14,7 @@ class LineBotService
     body = request.body.read
 
     bot = LineBotService.new
-    bot.varify_signature(request.env['HTTP_X_LINE_SIGNATURE'])
-
-    signature = request.env['HTTP_X_LINE_SIGNATURE']
-    unless client.validate_signature(body, signature)
-      # error 400 do 'Bad Request' end
-      return_msg = '400 Bad Request'
-      return '400 Bad Request'
-    end
+    bot.varify_signature(request)
 
     events = client.parse_events_from(body)
     events.each { |event|
@@ -54,7 +47,9 @@ class LineBotService
     }
   end
 
-  def varify_signature signature
+  def varify_signature request
+    body = request.body.read
+    signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       # error 400 do 'Bad Request' end
       return_msg = '400 Bad Request'
