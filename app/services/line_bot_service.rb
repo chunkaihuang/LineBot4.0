@@ -2,18 +2,18 @@ require 'line/bot'
 
 class LineBotService
 
-  attr_accessor :client, :bot
+  attr_accessor :client
   def initialize
     self.client ||= Line::Bot::Client.new { |config|
       config.channel_secret = Settings.line.channel_secret
       config.channel_token = Settings.line.channel_token
     }
-    self.bot = LineBotService.new
   end
 
   def reply_msg request
     body = request.body.read
 
+    bot = LineBotService.new
     bot.varify_signature(request.env['HTTP_X_LINE_SIGNATURE'])
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
