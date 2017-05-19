@@ -79,7 +79,10 @@ class LineBotService
       search_string = receive_message.gsub!("-ap(", "")
       search_string = search_string.gsub!(")", "")
       files.each do |file|
-        str = str + File.foreach("public/docs/#{file}_utf8.txt").grep(/#{search_string}/)
+        str_array = File.foreach("public/docs/#{file}_utf8.txt").grep(/#{search_string}/)
+        str_array.each do |target_str|
+          str += target_str
+        end
       end
     end
     return str
