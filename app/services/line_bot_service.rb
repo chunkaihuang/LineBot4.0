@@ -76,8 +76,8 @@ class LineBotService
         break if str.size >= 8
       end
     when /-ap/
-      search_string = receive_message.gsub!('-ap (', '')
-      search_string = receive_message.gsub!(')', '')
+      search_string = receive_message.gsub!("-ap(", "")
+      search_string = search_string.gsub!(")", "")
       files.each do |file|
         File.foreach("public/docs/#{file}_utf8.txt") do |file|
           str = str + file.grep(/#{search_string}/)
