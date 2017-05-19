@@ -79,7 +79,7 @@ class LineBotService
     # end
     str = ''
     (1..100).each do |i|
-      sample_str = File.readlines("public/docs/#{"towu"}_utf8.txt").sample(10).first
+      sample_str = File.readlines("public/docs/#{filename}_utf8.txt").sample(10).first
       str = sample_str if sample_str.size >= 8
       break if str.size >= 8
     end
