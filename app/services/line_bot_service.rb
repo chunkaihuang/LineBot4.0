@@ -24,7 +24,7 @@ class LineBotService
         when Line::Bot::Event::MessageType::Text
 
           # 接收訊息後客製化回應訊息
-          return_msg = bot.custom_message()
+          return_msg = bot.custom_message(event.message['text'])
           # 組成回覆字串
           message = bot.format_message(return_msg)
           # 回覆
