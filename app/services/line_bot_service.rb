@@ -20,7 +20,7 @@ class LineBotService
     events = client.parse_events_from(body)
     events.each { |event|
       msg = event.message['text'].downcase
-      if msg.include?('-ar') || msg.include?('-ap')
+        if msg.include?('-ar') || msg.include?('-ap')
         case event
         when Line::Bot::Event::Message
           case event.type
@@ -66,7 +66,8 @@ class LineBotService
   def custom_message receive_message=nil
     str = ''
     files = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu'].sample
-    if receive_message.include?('-ar')
+    case receive_message
+    when /-ar/
       file = files.sample
       str = ''
       (1..100).each do |i|
@@ -74,7 +75,7 @@ class LineBotService
         str = sample_str if sample_str.size >= 8
         break if str.size >= 8
       end
-    else
+    when /-ap/
       search_string = receive_message.gsub!('-ap (', '')
       search_string = receive_message.gsub!(')', '')
       files.each do |file|
