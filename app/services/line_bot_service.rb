@@ -65,7 +65,7 @@ class LineBotService
 
   def custom_message receive_message=nil
     str = ''
-    files = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu'].sample
+    files = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu']
     case receive_message
     when /-ar/
       file = files.sample
