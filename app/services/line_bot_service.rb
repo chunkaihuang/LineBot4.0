@@ -64,22 +64,11 @@ class LineBotService
 
   def custom_message receive_message=nil
 
-    filename = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu'].sample(5).first
+    filename = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu'].sample
 
-    # rand_line = rand(1..100)
-    # str = ''
-    # loop_index = 0
-    # File.open("public/docs/#{filename}_utf8.txt", "r").each_line do |line|
-    #   # loop_index = loop_index+1
-    #   rand_line = rand(1..10)
-    #   if line.size >= 6 && rand_line >= 8
-    #     str = line
-    #     break
-    #   end
-    # end
     str = ''
     (1..100).each do |i|
-      sample_str = File.readlines("public/docs/#{filename}_utf8.txt").sample(10).first
+      sample_str = File.readlines("public/docs/#{filename}_utf8.txt").sample
       str = sample_str if sample_str.size >= 8
       break if str.size >= 8
     end
