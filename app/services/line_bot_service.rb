@@ -63,7 +63,7 @@ class LineBotService
   end
 
   def custom_message receive_message=nil
-    rand_num = rand(1..4)
+    rand_num = rand(1..5)
     filename = case rand_num
     when 1
       'evalcookie_utf8.txt'
@@ -73,19 +73,23 @@ class LineBotService
       'lin_utf8.txt'
     when 4
       'withgirl_utf8.txt'
+    when 5
+      'towu_utf8.txt'
     end
 
-    rand_line = rand(1..100)
-    str = ''
-    loop_index = 0
-    File.open("public/docs/#{filename}", "r").each_line do |line|
-      # loop_index = loop_index+1
-      rand_line = rand(1..10)
-      if line.size >= 6 && rand_line >= 8
-        str = line
-        break
-      end
-    end
+    # rand_line = rand(1..100)
+    # str = ''
+    # loop_index = 0
+    # File.open("public/docs/#{filename}", "r").each_line do |line|
+    #   # loop_index = loop_index+1
+    #   rand_line = rand(1..10)
+    #   if line.size >= 6 && rand_line >= 8
+    #     str = line
+    #     break
+    #   end
+    # end
+
+    str = File.readlines("data.txt").sample until str.size >= 6
     return str
 #     case receive_message
 #     when /蛙人/, /蛙人渣/, /陳蛙興/
