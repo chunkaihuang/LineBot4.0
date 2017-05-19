@@ -80,6 +80,7 @@ class LineBotService
       search_string = search_string.gsub!(")", "")
       files.each do |file|
         str_array = File.foreach("public/docs/#{file}_utf8.txt").grep(/#{search_string}/)
+        str += "\n檔名：#{file}\n\n" if str_array.present?
         str_array.each do |target_str|
           str += target_str
         end
