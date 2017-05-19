@@ -19,7 +19,7 @@ class LineBotService
     return_msg = ''
     events = client.parse_events_from(body)
     events.each { |event|
-      if event.message['text'].downcase.include?('rand ce')
+      if event.message['text'].downcase.include?('-ar')
         case event
         when Line::Bot::Event::Message
           case event.type
