@@ -89,7 +89,7 @@ class LineBotService
     #   end
     # end
 
-    str = File.readlines("data.txt").sample until str.size >= 6
+    str = File.readlines("public/docs/#{filename}").sample until str.size >= 6
     return str
 #     case receive_message
 #     when /蛙人/, /蛙人渣/, /陳蛙興/
