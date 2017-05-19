@@ -19,14 +19,15 @@ class LineBotService
     return_msg = ''
     events = client.parse_events_from(body)
     events.each { |event|
-      if event.message['text'].downcase.include?('-ar')
+      msg = event.message['text'].downcase
+      if msg.include?('-ar') || msg.include?('-ap')
         case event
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
 
             # 接收訊息後客製化回應訊息
-            return_msg = bot.custom_message(event.message['text'])
+            return_msg = bot.custom_message(msg)
             # 組成回覆字串
             message = bot.format_message(return_msg)
             # 回覆
@@ -63,16 +64,25 @@ class LineBotService
   end
 
   def custom_message receive_message=nil
-
-    filename = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu'].sample
-
     str = ''
-    (1..100).each do |i|
-      sample_str = File.readlines("public/docs/#{filename}_utf8.txt").sample
-      str = sample_str if sample_str.size >= 8
-      break if str.size >= 8
+    files = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu'].sample
+    if receive_message.include?('-ar')
+      file = files.sample
+      str = ''
+      (1..100).each do |i|
+        sample_str = File.readlines("public/docs/#{file}_utf8.txt").sample
+        str = sample_str if sample_str.size >= 8
+        break if str.size >= 8
+      end
+    else
+      search_string = receive_message.gsub!('-ap (', '')
+      search_string = receive_message.gsub!(')', '')
+      files.each do |file|
+        File.foreach("public/docs/#{file}_utf8.txt") do |file|
+          str = str + file.grep(/#{search_string}/)
+        end
+      end
     end
-
     return str
   end
 end
