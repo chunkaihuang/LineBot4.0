@@ -16,25 +16,30 @@ class LineBotService
     bot = LineBotService.new
     bot.varify_signature(request)
 
+    return_msg = ''
     events = client.parse_events_from(body)
     events.each { |event|
-      case event
-      when Line::Bot::Event::Message
-        case event.type
-        when Line::Bot::Event::MessageType::Text
+      if event.message['text'].downcase.include?('rand ce')
+        case event
+        when Line::Bot::Event::Message
+          case event.type
+          when Line::Bot::Event::MessageType::Text
 
-          # 接收訊息後客製化回應訊息
-          return_msg = bot.custom_message(event.message['text'])
-          # 組成回覆字串
-          message = bot.format_message(return_msg)
-          # 回覆
-          client.reply_message(event['replyToken'], message)
+            # 接收訊息後客製化回應訊息
+            return_msg = bot.custom_message(event.message['text'])
+            # 組成回覆字串
+            message = bot.format_message(return_msg)
+            # 回覆
+            client.reply_message(event['replyToken'], message)
 
-        when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
-          response = client.get_message_content(event.message['id'])
-          tf = Tempfile.open("content")
-          tf.write(response.body)
+          when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
+            response = client.get_message_content(event.message['id'])
+            tf = Tempfile.open("content")
+            tf.write(response.body)
+          end
         end
+      else
+        break
       end
     }
     return return_msg
@@ -58,34 +63,30 @@ class LineBotService
   end
 
   def custom_message receive_message=nil
-    if receive_message.downcase!.include?('rand ce')
-      rand_num = rand(1..4)
-      filename = case rand_num
-      when 1
-        'evalcookie_utf8.txt'
-      when 2
-        'frommide_utf8.txt'
-      when 3
-        'lin_utf8.txt'
-      when 4
-        'withgirl_utf8.txt'
-      end
-
-      rand_line = rand(1..100)
-      str = ''
-      loop_index = 0
-      File.open("public/docs/#{filename}", "r").each_line do |line|
-        # loop_index = loop_index+1
-        rand_line = rand(1..10)
-        if line.size >= 6 && rand_line >= 8
-          str = line
-          break
-        end
-      end
-      return str
-    else
-      ''
+    rand_num = rand(1..4)
+    filename = case rand_num
+    when 1
+      'evalcookie_utf8.txt'
+    when 2
+      'frommide_utf8.txt'
+    when 3
+      'lin_utf8.txt'
+    when 4
+      'withgirl_utf8.txt'
     end
+
+    rand_line = rand(1..100)
+    str = ''
+    loop_index = 0
+    File.open("public/docs/#{filename}", "r").each_line do |line|
+      # loop_index = loop_index+1
+      rand_line = rand(1..10)
+      if line.size >= 6 && rand_line >= 8
+        str = line
+        break
+      end
+    end
+    return str
 #     case receive_message
 #     when /蛙人/, /蛙人渣/, /陳蛙興/
 #       case rand_num
