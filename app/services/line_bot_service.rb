@@ -20,7 +20,7 @@ class LineBotService
     events = client.parse_events_from(body)
     events.each { |event|
       msg = event.message['text'].downcase
-        if msg.include?('-ar') || msg.include?('-ap')
+      if msg.include?('-ar') || msg.include?('-ap')
         case event
         when Line::Bot::Event::Message
           case event.type
