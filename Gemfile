@@ -18,19 +18,19 @@ gem 'settingslogic'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'line-bot-api'
-gem 'sinatra'
 
 # heroku
 gem 'rails_12factor'
 
 group :development, :test do
   gem 'byebug'
-  gem 'quiet_assets'
-  gem 'pry-rails'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
 	gem 'spring'
+	gem 'puma'
+	gem 'quiet_assets'
+  gem 'pry-rails'
 end
 

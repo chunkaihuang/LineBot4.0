@@ -10,7 +10,6 @@ class BaseController < ApplicationController
 
 	def callback
 		msg = LineBotService.new.reply_msg(request)
-		render json: msg
-		puts "render down"
+		render text: msg
 	end
 end
