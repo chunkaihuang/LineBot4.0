@@ -58,7 +58,7 @@ class LineBotService
   end
 
   def custom_message receive_message=nil
-    if receive_message.include?('rand ce')
+    if receive_message.downcase!.include?('rand ce')
       rand_num = rand(1..4)
       filename = case rand_num
       when 1
