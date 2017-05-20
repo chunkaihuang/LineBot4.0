@@ -2,7 +2,7 @@ require 'line/bot'
 
 class LineBotService
 
-  Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en']
+  Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en', '-gay']
 
   attr_accessor :client
   def initialize
@@ -103,7 +103,12 @@ class LineBotService
     files = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu']
     case receive_message
     when /-help/
-      str = "使用方式：\n"+"-help 查看所有指令\n"+"-ar 隨機文字\n"+"-ap(文字) 搜尋指定文字\n"+"-av 讚貼圖\n"+"-en 問題\n"
+      str = "使用方式：\n"+
+            "-help 查看所有指令\n"+
+            "-ar 隨機文字\n"+"-ap(文字) 搜尋指定文字\n"+
+            "-av 讚貼圖\n"+
+            "-en 問題\n"
+            "-gay 甲霸承洋\n"
       message = bot.text_format(str)
     when /-ar/
       file = files.sample
@@ -130,6 +135,10 @@ class LineBotService
     when /-av/
       message = bot.image_format
     when /-en/
+      message = bot.button_format
+    when /-gay/
+      gays = ['當Gay也不錯', '總之承洋你開心最重要 我才放心 再造成你困擾我該切老二哈了', '當Gay比較好']
+      str = gays.sample
       message = bot.button_format
     end
     return message
