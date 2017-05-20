@@ -103,7 +103,7 @@ class LineBotService
     files = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu']
     case receive_message
     when /-help/
-      str = "使用方式：\n"+
+      str = "白痴廢物智障靠爸人渣使用方式：\n"+
             "-help 查看所有指令\n"+
             "-ar 隨機文字\n"+"-ap(文字) 搜尋指定文字\n"+
             "-av 讚貼圖\n"+
