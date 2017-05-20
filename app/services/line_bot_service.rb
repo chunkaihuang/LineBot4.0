@@ -69,7 +69,7 @@ class LineBotService
         type: "carousel",
         columns: [
           {
-            thumbnailImageUrl: ActionController::Base.helpers.base_url + ActionController::Base.helpers.image_path("public/imgs/1465367218542.png"),
+            thumbnailImageUrl: "https://ayumi9487.herokuapp.com/" + ActionController::Base.helpers.image_path("imgs/kila/1465367218542.png"),
             title: "kila交往",
             text: "文件1",
             actions: [
