@@ -73,7 +73,7 @@ class LineBotService
             text: "文件#{index+1}",
           }
     end
-    {
+    return_msg = {
       type: "template",
       altText: "this is a carousel template",
       template: {
@@ -81,6 +81,7 @@ class LineBotService
         columns: columns
       }
     }
+    return return_msg
   end
 
   def button_format
