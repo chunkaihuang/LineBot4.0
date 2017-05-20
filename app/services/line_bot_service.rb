@@ -43,14 +43,7 @@ class LineBotService
     }
     return return_msg
   end
-
-  def format_message return_msg
-    {
-      type: 'text',
-      text: return_msg
-    }
-  end
-
+  
   def text_format return_msg
     {
       type: 'text',
