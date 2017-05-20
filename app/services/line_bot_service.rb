@@ -61,7 +61,7 @@ class LineBotService
 
   def msg_varify! msg
     check_array = ['-ar', '-ap', '-av']
-    return true if check_array.any? { |c| c.include? msg }
+    return true if check_array.any? { |c| msg.include?(c) }
   end
 
   def varify_signature request
