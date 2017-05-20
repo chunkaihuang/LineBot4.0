@@ -107,7 +107,7 @@ class LineBotService
             "-help 查看所有指令\n"+
             "-ar 隨機文字\n"+"-ap(文字) 搜尋指定文字\n"+
             "-av 讚貼圖\n"+
-            "-en 問題\n"
+            "-en 問題\n"+
             "-gay 甲霸承洋\n"
       message = bot.text_format(str)
     when /-ar/
@@ -139,7 +139,7 @@ class LineBotService
     when /-gay/
       gays = ['當Gay也不錯', '總之承洋你開心最重要 我才放心 再造成你困擾我該切老二哈了', '當Gay比較好']
       str = gays.sample
-      message = bot.button_format
+      message = bot.text_format(str)
     end
     return message
   end
