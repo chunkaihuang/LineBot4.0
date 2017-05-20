@@ -43,7 +43,7 @@ class LineBotService
     }
     return return_msg
   end
-  
+
   def text_format return_msg
     {
       type: 'text',
@@ -100,7 +100,6 @@ class LineBotService
       end
       str = target_array.sample
       message = bot.text_format(str)
-    end
     when /-av/
       message = bot.image_format(str)
     end
