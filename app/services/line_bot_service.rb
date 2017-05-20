@@ -104,7 +104,7 @@ class LineBotService
               {
                 type: "postback",
                 label: "查看",
-                data: "test"
+                data: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png"
               },
             ]
           },
@@ -195,7 +195,6 @@ class LineBotService
       message = bot.text_format(str)
     when /-kila/
       message = bot.carousel_format
-      puts message
     end
     return message
   end
