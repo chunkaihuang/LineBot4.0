@@ -62,26 +62,25 @@ class LineBotService
   end
 
   def carousel_format return_msg=nil
-    
     {
-      "type": "template",
-      "altText": "this is a carousel template",
-      "template": {
-          "type": "carousel",
-          "columns": [
+      type: "template",
+      altText: "this is a carousel template",
+      template: {
+        type: "carousel",
+        columns: [
+          {
+            thumbnailImageUrl: ActionController::Base.helpers.image_tag("public/imgs/1465367218542.png"),
+            title: "kila交往",
+            text: "文件1",
+            actions: [
               {
-                "thumbnailImageUrl": ActionController::Base.helpers.image_tag("public/imgs/1465367218542.png"),
-                "title": "kila交往",
-                "text": "文件1",
-                "actions": [
-                    {
-                        "type": "postback",
-                        "label": "查看",
-                        "data": "test"
-                    },
-                ]
+                type: "postback",
+                label: "查看",
+                data: "test"
               },
-          ]
+            ]
+          },
+        ]
       }
     }
   end
@@ -91,20 +90,20 @@ class LineBotService
       type: "template",
       altText: "this is a confirm template",
       template: {
-          type: "confirm",
-          text: "我是一位工程師？",
-          actions: [
-              {
-                type: "message",
-                label: "是",
-                text: "你也懂我"
-              },
-              {
-                type: "message",
-                label: "不是",
-                text: "哪有這樣子的啊..."
-              }
-          ]
+        type: "confirm",
+        text: "我是一位工程師？",
+        actions: [
+          {
+            type: "message",
+            label: "是",
+            text: "你也懂我"
+          },
+          {
+            type: "message",
+            label: "不是",
+            text: "哪有這樣子的啊..."
+          }
+        ]
       }
     }
   end
