@@ -2,7 +2,7 @@ require 'line/bot'
 
 class LineBotService
 
-  Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en', '-gay']
+  Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en', '-gay', '-kila']
 
   attr_accessor :client
   def initialize
@@ -58,6 +58,30 @@ class LineBotService
       type: 'sticker',
       packageId: 1,
       stickerId: 13,
+    }
+  end
+
+  def carousel_format return_msg=nil
+    {
+      "type": "template",
+      "altText": "this is a carousel template",
+      "template": {
+          "type": "carousel",
+          "columns": [
+              {
+                "thumbnailImageUrl": image_tag("public/imgs/1465367218542.png"),
+                "title": "kila交往",
+                "text": "文件1",
+                "actions": [
+                    {
+                        "type": "postback",
+                        "label": "查看",
+                        "data": "test"
+                    },
+                ]
+              },
+          ]
+      }
     }
   end
 
@@ -140,6 +164,8 @@ class LineBotService
       gays = ['當Gay也不錯', '總之承洋你開心最重要 我才放心 再造成你困擾我該切老二哈了', '當Gay比較好']
       str = gays.sample
       message = bot.text_format(str)
+    when /-kila/
+      message = bot.carousel_format
     end
     return message
   end
