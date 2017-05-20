@@ -73,7 +73,7 @@ class LineBotService
     #         text: "文件#{index+1}",
     #         actions: [
     #           {
-    #             type: "postback",
+    #             type: "uri",
     #             label: "查看",
     #             uri: "https://ayumi9487.herokuapp.com/imgs/kila/#{img}"
     #           },
@@ -102,7 +102,7 @@ class LineBotService
             text: "文件1",
             actions: [
               {
-                type: "postback",
+                type: "uri",
                 label: "查看",
                 data: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png"
               },
