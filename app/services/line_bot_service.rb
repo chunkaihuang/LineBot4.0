@@ -69,7 +69,7 @@ class LineBotService
         type: "carousel",
         columns: [
           {
-            thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png"),
+            thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
             title: "kila交往",
             text: "文件1",
             actions: [
