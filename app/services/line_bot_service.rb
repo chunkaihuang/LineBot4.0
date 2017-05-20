@@ -2,6 +2,8 @@ require 'line/bot'
 
 class LineBotService
 
+  Check_Array ||= ['-ar', '-ap', '-av', '-en']
+
   attr_accessor :client
   def initialize
     self.client ||= Line::Bot::Client.new { |config|
@@ -59,9 +61,31 @@ class LineBotService
     }
   end
 
+  def button_format
+    {
+      type: "template",
+      altText: "this is a confirm template",
+      template: {
+          type: "confirm",
+          text: "我是一位工程師？",
+          actions: [
+              {
+                type: "message",
+                label: "是",
+                text: "yes"
+              },
+              {
+                type: "message",
+                label: "不是",
+                text: "no"
+              }
+          ]
+      }
+    }
+  end
+
   def msg_varify! msg
-    check_array = ['-ar', '-ap', '-av']
-    return true if check_array.any? { |c| msg.include?(c) }
+    return true if Check_Array.any? { |c| msg.include?(c) }
   end
 
   def varify_signature request
@@ -101,7 +125,9 @@ class LineBotService
       str = target_array.sample
       message = bot.text_format(str)
     when /-av/
-      message = bot.image_format(str)
+      message = bot.image_format
+    when /-en/
+      message = bot.button_format
     end
     return message
   end
