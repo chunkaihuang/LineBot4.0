@@ -104,7 +104,7 @@ class LineBotService
               {
                 type: "uri",
                 label: "查看",
-                data: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png"
+                uri: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png"
               },
             ]
           },
