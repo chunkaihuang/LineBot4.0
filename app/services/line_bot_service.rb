@@ -30,6 +30,7 @@ class LineBotService
 
             # 接收訊息後客製化回應訊息
             return_msg = bot.custom_message(msg, bot)
+            puts return_msg
             # 回覆
             client.reply_message(event['replyToken'], return_msg)
 
