@@ -30,7 +30,7 @@ class LineBotService
 
             # 接收訊息後客製化回應訊息
             return_msg = bot.custom_message(msg, bot)
-            puts return_msg
+            # puts return_msg
             # 回覆
             client.reply_message(event['replyToken'], return_msg)
 
@@ -63,65 +63,65 @@ class LineBotService
   end
 
   def carousel_format return_msg=nil
-    # imgs = Dir.entries("public/imgs/kila/")
-    # imgs.delete('.')
-    # imgs.delete('..')
-    # columns = []
-    # imgs.each_with_index do |img, index|
-    #   columns << {
-    #         thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/#{img}",
-    #         title: "kila交往",
-    #         text: "文件#{index+1}",
-    #         actions: [
-    #           {
-    #             type: "uri",
-    #             label: "查看",
-    #             uri: "https://ayumi9487.herokuapp.com/imgs/kila/#{img}"
-    #           },
-    #         ]
-    #       }
-    # end
-    # {
-    #   type: "template",
-    #   altText: "this is a carousel template",
-    #   template: {
-    #     type: "carousel",
-    #     columns: columns
-    #   }
-    # }
+    imgs = Dir.entries("public/imgs/kila/")
+    imgs.delete('.')
+    imgs.delete('..')
+    columns = []
+    imgs.sample(5).each_with_index do |img, index|
+      columns << {
+            thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/#{img}",
+            title: "kila交往",
+            text: "文件#{index+1}",
+            actions: [
+              {
+                type: "uri",
+                label: "查看",
+                uri: "https://ayumi9487.herokuapp.com/imgs/kila/#{img}"
+              },
+            ]
+          }
+    end
     {
       type: "template",
       altText: "this is a carousel template",
       template: {
         type: "carousel",
-        columns: [
-          {
-            thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
-            title: "kila交往",
-            text: "文件1",
-            actions: [
-              {
-                type: "uri",
-                label: "查看",
-                uri: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
-              },
-            ]
-          },
-          {
-            thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
-            title: "kila交往",
-            text: "文件1",
-            actions: [
-              {
-                type: "uri",
-                label: "查看",
-                uri: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
-              },
-            ]
-          }
-        ]
+        columns: columns
       }
     }
+    # {
+    #   type: "template",
+    #   altText: "this is a carousel template",
+    #   template: {
+    #     type: "carousel",
+    #     columns: [
+    #       {
+    #         thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
+    #         title: "kila交往",
+    #         text: "文件1",
+    #         actions: [
+    #           {
+    #             type: "uri",
+    #             label: "查看",
+    #             uri: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
+    #           },
+    #         ]
+    #       },
+    #       {
+    #         thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
+    #         title: "kila交往",
+    #         text: "文件1",
+    #         actions: [
+    #           {
+    #             type: "uri",
+    #             label: "查看",
+    #             uri: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
+    #           },
+    #         ]
+    #       }
+    #     ]
+    #   }
+    # }
   end
 
   def button_format
