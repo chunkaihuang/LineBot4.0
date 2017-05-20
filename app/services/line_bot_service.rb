@@ -62,6 +62,7 @@ class LineBotService
   end
 
   def carousel_format return_msg=nil
+    
     {
       "type": "template",
       "altText": "this is a carousel template",
@@ -69,7 +70,7 @@ class LineBotService
           "type": "carousel",
           "columns": [
               {
-                "thumbnailImageUrl": image_tag("public/imgs/1465367218542.png"),
+                "thumbnailImageUrl": ActionController::Base.helpers.image_tag("public/imgs/1465367218542.png"),
                 "title": "kila交往",
                 "text": "文件1",
                 "actions": [
