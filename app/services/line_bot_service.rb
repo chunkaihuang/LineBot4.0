@@ -81,6 +81,8 @@ class LineBotService
         columns: columns
       }
     }
+    puts columns
+    puts return_msg
     return return_msg
   end
 
