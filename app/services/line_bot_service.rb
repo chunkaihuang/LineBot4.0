@@ -71,6 +71,13 @@ class LineBotService
             thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/#{img}",
             title: "kila交往",
             text: "文件#{index+1}",
+            actions: [
+              {
+                type: "postback",
+                label: "查看",
+                uri: "https://ayumi9487.herokuapp.com/imgs/kila/#{img}"
+              },
+            ]
           }
     end
     return_msg = {
