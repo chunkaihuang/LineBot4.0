@@ -2,7 +2,7 @@ require 'line/bot'
 
 class LineBotService
 
-  Check_Array ||= ['-ar', '-ap', '-av', '-en']
+  Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en']
 
   attr_accessor :client
   def initialize
