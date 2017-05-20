@@ -103,6 +103,6 @@ class LineBotService
     when /-av/
       message = bot.image_format(str)
     end
-    return str
+    return message
   end
 end
