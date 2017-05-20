@@ -90,6 +90,27 @@ class LineBotService
     }
     puts columns
     puts return_msg
+    puts {
+            type: "template",
+            altText: "this is a carousel template",
+            template: {
+              type: "carousel",
+              columns: [
+                {
+                  thumbnailImageUrl: "https://ayumi9487.herokuapp.com/imgs/kila/1465367218542.png",
+                  title: "kila交往",
+                  text: "文件1",
+                  actions: [
+                    {
+                      type: "postback",
+                      label: "查看",
+                      data: "test"
+                    },
+                  ]
+                },
+              ]
+            }
+          }
     return return_msg
   end
 
