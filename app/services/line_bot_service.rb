@@ -20,18 +20,16 @@ class LineBotService
     events = client.parse_events_from(body)
     events.each { |event|
       msg = event.message['text'].downcase
-      if msg.include?('-ar') || msg.include?('-ap')
+      if bot.msg_varify!(msg)
         case event
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
 
             # 接收訊息後客製化回應訊息
-            return_msg = bot.custom_message(msg)
-            # 組成回覆字串
-            message = bot.format_message(return_msg)
+            return_msg = bot.custom_message(msg, bot)
             # 回覆
-            client.reply_message(event['replyToken'], message)
+            client.reply_message(event['replyToken'], return_msg)
 
           when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
             response = client.get_message_content(event.message['id'])
@@ -53,6 +51,26 @@ class LineBotService
     }
   end
 
+  def text_format return_msg
+    {
+      type: 'text',
+      text: return_msg
+    }
+  end
+
+  def image_format return_msg=nil
+    {
+      type: 'sticker',
+      packageId: 1,
+      stickerId: 13,
+    }
+  end
+
+  def msg_varify! msg
+    check_array = ['-ar', '-ap', '-av']
+    return true if check_array.any? { |c| c.include? msg }
+  end
+
   def varify_signature request
     body = request.body.read
     signature = request.env['HTTP_X_LINE_SIGNATURE']
@@ -63,7 +81,7 @@ class LineBotService
     end
   end
 
-  def custom_message receive_message=nil
+  def custom_message receive_message=nil, bot
     str = ''
     files = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu']
     case receive_message
@@ -75,6 +93,7 @@ class LineBotService
         str = sample_str if sample_str.size >= 8
         break if str.size >= 8
       end
+      message = bot.text_format(str)
     when /-ap/
       search_string = receive_message.gsub!("-ap(", "")
       search_string = search_string.gsub!(")", "")
@@ -87,6 +106,10 @@ class LineBotService
         end
       end
       str = target_array.sample
+      message = bot.text_format(str)
+    end
+    when /-av/
+      message = bot.image_format(str)
     end
     return str
   end
