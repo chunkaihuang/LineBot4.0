@@ -218,7 +218,7 @@ class LineBotService
     search_string = ''
     randnum = rand(1..100)
     if MATCH_STRING.any? { |s| receive_message.include?(s); search_string = s if receive_message.include?(s); }
-      if randnum > 90
+      if randnum > 80
         target_array = []
         Files.each do |file|
           str_array = File.foreach("public/docs/#{file}_utf8.txt").grep(/#{search_string}/)
@@ -231,7 +231,7 @@ class LineBotService
         str = ''
       end
     else
-      if randnum <= 5
+      if randnum <= 10
         file = Files.sample
         (1..100).each do |i|
           sample_str = File.readlines("public/docs/#{file}_utf8.txt").sample
