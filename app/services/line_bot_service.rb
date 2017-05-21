@@ -208,7 +208,7 @@ class LineBotService
       message = bot.carousel_format
     else
       rand_num = rand(1..100)
-      if rand_num <=3
+      if rand_num <=2
         file = files.sample
         str = ''
         (1..100).each do |i|
