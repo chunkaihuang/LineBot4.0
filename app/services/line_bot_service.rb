@@ -223,6 +223,7 @@ class LineBotService
       docs = Dir.entries("public/docs/")
       docs.delete('.')
       docs.delete('..')
+      docs.delete('.DS_Store')
       if randnum > SELECT_RAND
         target_array = []
         docs.each do |doc|
