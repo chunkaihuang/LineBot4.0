@@ -217,6 +217,8 @@ class LineBotService
           break if str.size >= 8
         end
         message = bot.text_format(str)
+      else
+        message = bot.text_format('')
       end
     end
     return message
