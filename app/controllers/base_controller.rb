@@ -12,7 +12,7 @@ class BaseController < ApplicationController
 
 	private
 		def count_random_num
-			rand(1..100) <= 3
+			return true if rand(1..100) <= 3
 		end
 	# 	def varify_line_message
 			
