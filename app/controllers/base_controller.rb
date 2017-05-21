@@ -1,6 +1,6 @@
 class BaseController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:callback]
-	# before_filter :varify_line_message, only: [:callback]
+	before_filter :count_random_num, only: [:callback]
 
 	def index
 	end
@@ -10,7 +10,10 @@ class BaseController < ApplicationController
 		render plain: msg
 	end
 
-	# private
+	private
+		def count_random_num
+			rand(1..100) <= 3
+		end
 	# 	def varify_line_message
 			
 	# 	end
