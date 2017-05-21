@@ -6,7 +6,7 @@ class BaseController < ApplicationController
 
 	def callback
 		randnum = rand(1..100)
-		if randnum <= 3
+		if randnum <= 5
 			msg = LineBotService.new.reply_msg(request)
 			render plain: msg
 		else
