@@ -23,22 +23,25 @@ class LineBotService
     return_msg = ''
     events = client.parse_events_from(body)
     events.each { |event|
-      msg = event.message['text'].downcase
-      if bot.msg_varify!(msg)
+      if bot.msg_varify!
         case event
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
+            msg = event.message['text'].downcase
 
             # 接收訊息後客製化回應訊息
             return_msg = bot.random_message(msg, bot)
             # 回覆
             client.reply_message(event['replyToken'], return_msg)
 
-          when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
-            response = client.get_message_content(event.message['id'])
-            tf = Tempfile.open("content")
-            tf.write(response.body)
+          # when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
+          #   response = client.get_message_content(event.message['id'])
+          #   tf = Tempfile.open("content")
+          #   tf.write(response.body)
+          else
+            return_msg = bot.random_message('', bot)
+            client.reply_message(event['replyToken'], return_msg)
           end
         end
       else
