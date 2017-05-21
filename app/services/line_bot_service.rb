@@ -4,6 +4,7 @@ class LineBotService
 
   # Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en', '-gay', '-kila']
   Files ||= ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu']
+  MATCH_STRING ||= ['竣宇', '俊宇', '小護士', '高果', '承洋', '餅乾', '蛙人', '阿鄙']
 
   attr_accessor :client
   def initialize
@@ -211,7 +212,6 @@ class LineBotService
 
   def random_message receive_message=nil, bot
     str = ''
-    MATCH_STRING ||= ['竣宇', '俊宇', '小護士', '高果', '承洋', '餅乾', '蛙人', '阿鄙']
       file = Files.sample
       str = ''
       (1..100).each do |i|
