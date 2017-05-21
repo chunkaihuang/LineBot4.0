@@ -3,6 +3,7 @@ require 'line/bot'
 class LineBotService
 
   # Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en', '-gay', '-kila']
+  Files ||= ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu']
 
   attr_accessor :client
   def initialize
@@ -164,7 +165,6 @@ class LineBotService
 
   def custom_message receive_message=nil, bot
     str = ''
-    files = ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu']
     case receive_message
     when /-help/
       str = "白痴廢物智障靠爸人渣使用方式：\n"+
@@ -175,7 +175,7 @@ class LineBotService
             "-gay 甲霸承洋\n"
       message = bot.text_format(str)
     when /-ar/
-      file = files.sample
+      file = Files.sample
       str = ''
       (1..100).each do |i|
         sample_str = File.readlines("public/docs/#{file}_utf8.txt").sample
@@ -187,7 +187,7 @@ class LineBotService
       search_string = receive_message.gsub!("-ap(", "")
       search_string = search_string.gsub!(")", "")
       target_array = []
-      files.each do |file|
+      Files.each do |file|
         str_array = File.foreach("public/docs/#{file}_utf8.txt").grep(/#{search_string}/)
         # str += "\n檔名：#{file}\n\n" if str_array.present?
         str_array.each do |target_str|
@@ -209,7 +209,7 @@ class LineBotService
     else
       rand_num = rand(1..100)
       if rand_num <=2
-        file = files.sample
+        file = Files.sample
         str = ''
         (1..100).each do |i|
           sample_str = File.readlines("public/docs/#{file}_utf8.txt").sample
