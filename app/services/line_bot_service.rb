@@ -30,7 +30,7 @@ class LineBotService
           when Line::Bot::Event::MessageType::Text
 
             # 接收訊息後客製化回應訊息
-            return_msg = bot.custom_message(msg, bot)
+            return_msg = bot.random_message(msg, bot)
             # 回覆
             client.reply_message(event['replyToken'], return_msg)
 
@@ -206,6 +206,12 @@ class LineBotService
     # when /-kila/
     #   message = bot.carousel_format
     # else
+    # end
+  end
+
+  def random_message receive_message=nil, bot
+    str = ''
+    MATCH_STRING ||= ['竣宇', '俊宇', '小護士', '高果', '承洋', '餅乾', '蛙人', '阿鄙']
       file = Files.sample
       str = ''
       (1..100).each do |i|
@@ -214,7 +220,6 @@ class LineBotService
         break if str.size >= 8
       end
       message = bot.text_format(str)
-    # end
     return message
   end
 end
