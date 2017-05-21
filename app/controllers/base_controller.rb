@@ -7,7 +7,7 @@ class BaseController < ApplicationController
 
 	def callback
 		msg = LineBotService.new.reply_msg(request)
-		render plans: msg
+		render text: msg
 	end
 
 	# private
