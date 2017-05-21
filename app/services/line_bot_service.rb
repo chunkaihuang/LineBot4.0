@@ -219,11 +219,11 @@ class LineBotService
     str = ''
     search_string = ''
     randnum = rand(1..100)
+    docs = Dir.entries("public/docs/")
+    docs.delete('.')
+    docs.delete('..')
+    docs.delete('.DS_Store')
     if MATCH_STRING.any? { |s| receive_message.include?(s); search_string = s if receive_message.include?(s); }
-      docs = Dir.entries("public/docs/")
-      docs.delete('.')
-      docs.delete('..')
-      docs.delete('.DS_Store')
       if randnum > SELECT_RAND
         target_array = []
         docs.each do |doc|
@@ -238,9 +238,9 @@ class LineBotService
       end
     else
       if randnum <= NONSELECT_RAND
-        file = Files.sample
+        file = docs.sample
         (1..100).each do |i|
-          sample_str = File.readlines("public/docs/#{file}_utf8.txt").sample
+          sample_str = File.readlines("public/docs/#{file}").sample
           str = sample_str if sample_str.size >= 8
           break if str.size >= 8
         end
