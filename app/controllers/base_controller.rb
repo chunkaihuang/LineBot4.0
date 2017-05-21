@@ -12,9 +12,4 @@ class BaseController < ApplicationController
 			render plain: ''
 		end
 	end
-
-	private
-	# 	def varify_line_message
-			
-	# 	end
 end

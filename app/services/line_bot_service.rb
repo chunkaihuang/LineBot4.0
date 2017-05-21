@@ -8,8 +8,8 @@ class LineBotService
   attr_accessor :client
   def initialize
     self.client ||= Line::Bot::Client.new { |config|
-      config.channel_secret = Settings.line.channel_secret
-      config.channel_token = Settings.line.channel_token
+      config.channel_secret = ENV['CHANNEL_SECRET']
+      config.channel_token = ENV['CHANNEL_TOKEN']
     }
   end
 
