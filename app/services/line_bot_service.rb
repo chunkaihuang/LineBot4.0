@@ -2,7 +2,7 @@ require 'line/bot'
 
 class LineBotService
 
-  Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en', '-gay', '-kila']
+  # Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en', '-gay', '-kila']
 
   attr_accessor :client
   def initialize
@@ -148,7 +148,8 @@ class LineBotService
   end
 
   def msg_varify! msg
-    return true if Check_Array.any? { |c| msg.include?(c) }
+    # return true if Check_Array.any? { |c| msg.include?(c) }
+    true
   end
 
   def varify_signature request
@@ -205,6 +206,18 @@ class LineBotService
       message = bot.text_format(str)
     when /-kila/
       message = bot.carousel_format
+    else
+      rand_num = rand(1..100)
+      if rand_num <=3
+        file = files.sample
+        str = ''
+        (1..100).each do |i|
+          sample_str = File.readlines("public/docs/#{file}_utf8.txt").sample
+          str = sample_str if sample_str.size >= 8
+          break if str.size >= 8
+        end
+        message = bot.text_format(str)
+      end
     end
     return message
   end
