@@ -220,7 +220,7 @@ class LineBotService
     search_string = ''
     randnum = rand(1..100)
     if MATCH_STRING.any? { |s| receive_message.include?(s); search_string = s if receive_message.include?(s); }
-      docs = Dir.entries("public/docs/kila/")
+      docs = Dir.entries("public/docs/")
       docs.delete('.')
       docs.delete('..')
       if randnum > SELECT_RAND
