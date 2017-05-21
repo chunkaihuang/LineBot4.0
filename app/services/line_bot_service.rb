@@ -4,7 +4,7 @@ class LineBotService
 
   # Check_Array ||= ['-help', '-ar', '-ap', '-av', '-en', '-gay', '-kila']
   Files ||= ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu']
-  MATCH_STRING ||= ['竣宇', '俊宇', '小護士', '高果', '承洋', '餅乾', '蛙人', '阿鄙']
+  MATCH_STRING ||= ['竣宇', '俊宇', '小護士', '高果', '承洋', '餅乾', '彥廷', '蛙人', '人渣', '阿鄙']
 
   attr_accessor :client
   def initialize
@@ -212,14 +212,35 @@ class LineBotService
 
   def random_message receive_message=nil, bot
     str = ''
-      file = Files.sample
-      str = ''
-      (1..100).each do |i|
-        sample_str = File.readlines("public/docs/#{file}_utf8.txt").sample
-        str = sample_str if sample_str.size >= 8
-        break if str.size >= 8
+    search_string = ''
+    if MATCH_STRING.any? { |s| receive_message.include?(s); search_string = s if receive_message.include?(s); }
+      randnum = rand(1..100)
+      if randnum <= 10
+        target_array = []
+        Files.each do |file|
+          str_array = File.foreach("public/docs/#{file}_utf8.txt").grep(/#{search_string}/)
+          str_array.each do |target_str|
+            target_array << target_str
+          end
+        end
+        str = target_array.sample
+      else
+        str = ''
       end
-      message = bot.text_format(str)
+    else
+      randnum = rand(1..100)
+      if randnum <= 5
+        file = Files.sample
+        (1..100).each do |i|
+          sample_str = File.readlines("public/docs/#{file}_utf8.txt").sample
+          str = sample_str if sample_str.size >= 8
+          break if str.size >= 8
+        end
+      else
+        str = ''
+      end
+    end
+    message = bot.text_format(str)
     return message
   end
 end
