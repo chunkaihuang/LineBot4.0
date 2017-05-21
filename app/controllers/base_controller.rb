@@ -1,19 +1,19 @@
 class BaseController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:callback]
-	before_action :count_random_num, only: [:callback]
 
 	def index
 	end
 
 	def callback
-		msg = LineBotService.new.reply_msg(request)
-		render plain: msg
+		if rand(1..100) <= 3
+			msg = LineBotService.new.reply_msg(request)
+			render plain: msg
+		else
+			render plain: ''
+		end
 	end
 
 	private
-		def count_random_num
-			return true if rand(1..100) <= 3
-		end
 	# 	def varify_line_message
 			
 	# 	end
