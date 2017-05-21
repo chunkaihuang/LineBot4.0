@@ -220,10 +220,13 @@ class LineBotService
     search_string = ''
     randnum = rand(1..100)
     if MATCH_STRING.any? { |s| receive_message.include?(s); search_string = s if receive_message.include?(s); }
+      docs = Dir.entries("public/docs/kila/")
+      docs.delete('.')
+      docs.delete('..')
       if randnum > SELECT_RAND
         target_array = []
-        Files.each do |file|
-          str_array = File.foreach("public/docs/#{file}_utf8.txt").grep(/#{search_string}/)
+        docs.each do |doc|
+          str_array = File.foreach("public/docs/#{doc}").grep(/#{search_string}/)
           str_array.each do |target_str|
             target_array << target_str
           end
