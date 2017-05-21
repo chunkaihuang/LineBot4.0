@@ -151,7 +151,7 @@ class LineBotService
     }
   end
 
-  def msg_varify! msg
+  def msg_varify! msg=nil
     # return true if Check_Array.any? { |c| msg.include?(c) }
     true
   end
