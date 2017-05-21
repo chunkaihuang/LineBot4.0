@@ -1,6 +1,6 @@
 class BaseController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:callback]
-	before_filter :count_random_num, only: [:callback]
+	before_action :count_random_num, only: [:callback]
 
 	def index
 	end
