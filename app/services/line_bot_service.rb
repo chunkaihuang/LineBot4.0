@@ -6,7 +6,7 @@ class LineBotService
   Files ||= ['evalcookie', 'frommide', 'lin', 'withgirl', 'towu']
   MATCH_STRING ||= ['竣宇', '俊宇', '小護士', '高果', '承洋', '大餅', '餅乾', '彥廷', '蛙人', '人渣', '阿鄙', 'jason', '哭', '邪惡']
   SELECT_RAND ||= 84
-  NONSELECT_RAND ||= 8
+  NONSELECT_RAND ||= 9
 
   attr_accessor :client
   def initialize
